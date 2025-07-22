@@ -57,6 +57,9 @@ void SystemClock_Config(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define KEY_Pin GPIO_PIN_0
+#define KEY_GPIO_Port GPIOB
+#define KEY_EXTI_IRQn EXTI0_IRQn
 
 /* USER CODE BEGIN Private defines */
 

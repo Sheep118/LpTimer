@@ -77,10 +77,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     HAL_UART_MspInit(&huart1); // 重新初始化USART1
     if(GPIO_Pin == KEY_Pin) // 检查是否为KEY
     {
-        printf("into %d \r\n",(uint8_t)HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin));
+        // printf("into %d \r\n",(uint8_t)HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin));
         if(HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_RESET){
-          printf("Button pressed!\r\n");
-          LpTimer_Stop(&ledr_timer);
+          // printf("Button pressed!\r\n");
+          LpTimer_Stop(&test1_timer);
         }
     }
 }
@@ -129,7 +129,7 @@ int main(void)
   LpTimer_Create(&test1_timer, E_LPTIMERMODE_PERIODIC, test1_timer_hook);
   LpTimer_Create(&test2_timer, E_LPTIMERMODE_ONCE, test2_timer_hook);
   LpTimer_Create(&test3_timer, E_LPTIMERMODE_PERIODIC, test3_timer_hook);
-  LpTimer_Start(&test1_timer,MS2TICK(500));
+  LpTimer_Start(&test1_timer,MS2TICK(1000));
   LpTimer_Start(&test2_timer,MS2TICK(5000));
   LpTimer_Start(&test3_timer,MS2TICK(3200));
   /* USER CODE END 2 */
