@@ -20,6 +20,8 @@ typedef enum{
 #else 
 typedef enum{
     LED1 = 0,
+    LED2,
+    LED3,
     MAX_LED_NUM
 } Led_TypeDef;
 #endif

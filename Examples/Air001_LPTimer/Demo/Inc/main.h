@@ -42,6 +42,8 @@ extern LPTIM_HandleTypeDef LPTIMConf;
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+void APP_RCCOscConfig(void);
+void APP_delay_us(uint32_t nus);
 
 #ifdef __cplusplus
 }

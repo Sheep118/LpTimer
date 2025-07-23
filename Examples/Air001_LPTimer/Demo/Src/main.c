@@ -26,36 +26,49 @@
 /* Private define ------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 LPTIM_HandleTypeDef       LPTIMConf = {0};
-uint8_t led_state = 0; //LED状态变量
+LpTimer test1_timer;
+LpTimer test2_timer;
+LpTimer test3_timer;
 /* Private user code ---------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
-static void APP_RCCOscConfig(void);
 static void APP_LPTIMInit(void);
 static void APP_LPTIMStart(uint16_t arr);
-static void APP_delay_us(uint32_t nus);
-void HWLpTimer_Puase(void);
-void HWLpTimer_Start(void);
-void HWLpTimer_SetWakeUpTime(uint32_t period);
-void HWLpTimer_SetCnt(uint32_t counter);
-uint32_t HWLpTimer_GetCnt(void);
-void HWLpTimer_WakeUpHook(void *p_context);
+//void HWLpTimer_Puase(void);
+//void HWLpTimer_Start(void);
+//void HWLpTimer_SetWakeUpTime(uint32_t period);
+//void HWLpTimer_SetCnt(uint32_t counter);
+//uint32_t HWLpTimer_GetCnt(void);
+//void HWLpTimer_WakeUpHook(void *p_context);
 
-void TestTimerHook(void)
-{
-  BSP_LED_Toggle(LED1); // 切换LED状态
-  BSP_USART_Printf("LED TOGGLE!\r\n");
+void test1_timer_hook(void){
+    BSP_LED_Toggle(LED1);
+    BSP_USART_Printf("test1\r\n");
+  }
+void test2_timer_hook(void){
+  BSP_LED_Off(LED2);
+  BSP_USART_Printf("test2\r\n");
+}
+void test3_timer_hook(void){
+    BSP_LED_Toggle(LED3);
+    BSP_USART_Printf("test3\r\n");
+    static uint8_t i = 0;
+    i++; 
+    if(i == 2){
+      i = 0;
+      if(LPTIMER_IS_STOPED(&test2_timer)){
+        LpTimer_Start(&test2_timer,MS2TICK(3000));
+        BSP_LED_On(LED2);
+      }
+    }
 }
 
-static uint32_t g_arr = 0;
-static uint8_t g_flag_overflow = 0;
 uint8_t into_low_power = 0;
 
 /**
   * @brief   应用程序入口函数
   * @retval  int
   */
-#if 1 
 int main(void)
 {
   /* 外设、systick初始化 */
@@ -64,27 +77,9 @@ int main(void)
   /* 时钟设置 */
   APP_RCCOscConfig();
   // /* 初始化LED */
-  // BSP_LED_Init(LED1);
-
-  GPIO_InitTypeDef GPIO_InitStruct;
-
-  /* Enable the GPIO_LED Clock */
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  /* Configure the GPIO_LED pin */
-  GPIO_InitStruct.Pin = GPIO_PIN_3;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_RESET);
-  
-  GPIO_InitStruct.Pin = GPIO_PIN_5;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-  GPIO_InitStruct.Pin = GPIO_PIN_4;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+  BSP_LED_Init(LED1);
+  BSP_LED_Init(LED2);
+  BSP_LED_Init(LED3);
 
   /* 初始化按键 */
 //  BSP_PB_Init(BUTTON_USER, BUTTON_MODE_GPIO);
@@ -97,27 +92,27 @@ int main(void)
   BSP_USART_Init(115200);
   BSP_USART_Printf("uart_test!\r\n");
   BSP_USART_Deinit();
-  // /* 关闭Systick中断 */
-  // HAL_SuspendTick();
 
-  /* 点亮LED*/
-  // BSP_LED_Off(LED1);
-  //BSP_USART_Init(115200);
+  /* 关闭LED */
+  BSP_LED_Off(LED1);
+  BSP_LED_Off(LED2);
+  BSP_LED_Off(LED3);
   
-
-  /* Enable the GPIO_LED Clock */
-  // /* 等待按键按下 */
-  // while (BSP_PB_GetState(BUTTON_USER) == 0)
-  // {
-  // }
-
-  // /* 关闭LED */
-  // BSP_LED_Off(LED_RED);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_RESET);
+  LpTimer_Create(&test1_timer, E_LPTIMERMODE_PERIODIC, test1_timer_hook);
+  LpTimer_Create(&test2_timer, E_LPTIMERMODE_ONCE, test2_timer_hook);
+  LpTimer_Create(&test3_timer, E_LPTIMERMODE_PERIODIC, test3_timer_hook);
+  LpTimer_Start(&test1_timer,MS2TICK(1000));
+  LpTimer_Start(&test2_timer,MS2TICK(5000));
+  LpTimer_Start(&test3_timer,MS2TICK(3200));
+  // __HAL_LPTIM_DISABLE(&LPTIMConf);
+  // APP_LPTIMStart(256*2);
+  // HAL_SuspendTick(); //关闭systick
+  // HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);//低功耗模式
   
-  __HAL_LPTIM_DISABLE(&LPTIMConf);
-  APP_LPTIMStart(256*2);
-  HAL_SuspendTick(); //关闭systick
-  HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);//低功耗模式
+  
   while (1)
   {
     if(into_low_power){
@@ -142,35 +137,23 @@ int main(void)
     // APP_delay_us(500000);
   }
 }
-#else 
-int main(void){
-  HAL_Init();
-  APP_RCCOscConfig();
-  BSP_LED_Init(LEDRED);
-  BSP_LED_Init(LEDGREEN);
-  BSP_LED_Init(LEDBLUE);
-  HAL_SuspendTick();
-  HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);//低功耗模式
-  while(1){
 
-  }
-}
-#endif
 /**
   * @brief   时钟配置函数
   * @param   无
   * @retval  无
   */
-static void APP_RCCOscConfig(void)
+void APP_RCCOscConfig(void)
 {
   RCC_OscInitTypeDef OSCINIT;
   RCC_PeriphCLKInitTypeDef LPTIM_RCC;
+  // RCC_ClkInitTypeDef ClkInit; 
 
   /* LSI时钟配置 */
   OSCINIT.OscillatorType = RCC_OSCILLATORTYPE_LSI;  /* 选择配置LSI */
   OSCINIT.LSIState = RCC_LSI_ON;                    /* LSI开启 */
   OSCINIT.HSIState = RCC_HSI_ON;                    /* HSI开启 */
-  OSCINIT.HSIDiv = RCC_HSI_DIV1;                   /* HSI分频1 ,24MHz */
+  OSCINIT.HSIDiv = RCC_HSI_DIV1;                   /* HSI分频1 ,24MHz,唤醒后是8MHz */
   // OSCINIT.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT; /* HSI校准值默认 */
   // HSI的开启似乎没有什么用
   /* 时钟初始化 */
@@ -178,7 +161,16 @@ static void APP_RCCOscConfig(void)
   {
     Error_Handler();
   }
+
+  // ClkInit.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  // ClkInit.APB1CLKDivider = RCC_HCLK_DIV1;
+  // ClkInit.ClockType = RCC_CLOCKTYPE_SYSCLK;
+  // ClkInit.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   
+  // if(HAL_RCC_ClockConfig(&ClkInit, FLASH_LATENCY_0) != HAL_OK){
+  //   Error_Handler();
+  // }
+
   /* LPTIM时钟配置 */
   LPTIM_RCC.PeriphClockSelection = RCC_PERIPHCLK_LPTIM;     /* 选择配置外设时钟：LPTIM */
   LPTIM_RCC.LptimClockSelection = RCC_LPTIMCLKSOURCE_LSI;   /* 选择LPTIM时钟源：LSI */
@@ -239,44 +231,34 @@ static void APP_LPTIMStart(uint16_t arr)
   * @param   无
   * @retval  无
   */
-void HAL_LPTIM_AutoReloadMatchCallback(LPTIM_HandleTypeDef *hlptim)
-{
-  // HAL_ResumeTick(); //重新开启systick中断
-  // led_state = !led_state;
-  // if(led_state){
-  //   BSP_LED_Init(LED1);
-  //   BSP_LED_On(LED1);
-  // }else{
-  //   BSP_LED_Off(LED1);
-  //   BSP_LED_DeInit(LED1);
-  // }
-  APP_RCCOscConfig();
-  BSP_USART_Init(115200);
-  BSP_USART_Printf("LPTIM AutoReload Match Callback!\r\n");
-  BSP_USART_Deinit();
-  HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_3);
-  HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_4);
-  HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
-  __HAL_LPTIM_DISABLE(&LPTIMConf); 
-  //必须先失能定时器，才能写IER中断失能寄存器开启中断
-  //换句话说，要重新开启中断，需要1.失能定时器，2.清除ISR标志位(这个在中断服务函数中做了)
-  APP_LPTIMStart(256*2);
-  into_low_power = 1;
-}
 // void HAL_LPTIM_AutoReloadMatchCallback(LPTIM_HandleTypeDef *hlptim)
 // {
-//     g_flag_overflow = 1; // 设置溢出标志
-//     LpTimer_Execute();
-//     g_flag_overflow = 0; //清除溢出标志
-//     into_low_power = 1;
+//   APP_RCCOscConfig();
+//   BSP_USART_Init(115200);
+//   BSP_USART_Printf("LPTIM AutoReload Match Callback!\r\n");
+//   BSP_USART_Deinit();
+//   BSP_LED_Toggle(LED1);
+//   BSP_LED_Toggle(LED2);
+//   BSP_LED_Toggle(LED3);
+//   __HAL_LPTIM_DISABLE(&LPTIMConf); 
+//   //必须先失能定时器，才能写IER中断失能寄存器开启中断
+//   //换句话说，要重新开启中断，需要1.失能定时器，2.清除ISR标志位(这个在中断服务函数中做了)
+//   APP_LPTIMStart(256*2);
+//   into_low_power = 1;
 // }
+void HAL_LPTIM_AutoReloadMatchCallback(LPTIM_HandleTypeDef *hlptim)
+{
+    LpTimer_Execute();
+    BSP_USART_Printf("%d\r\n", HAL_LPTIM_ReadCounter(&LPTIMConf));
+    into_low_power = 1;
+}
 /**
   * @brief   微秒延时函数
   * @param   nus：延时时间
   * @retval  无
   * @note    此函数会关闭SysTick中断，如需要使用请重新初始化SysTick
   */
-static void APP_delay_us(uint32_t nus)
+void APP_delay_us(uint32_t nus)
  {
   HAL_Init();
   HAL_SuspendTick();
@@ -295,48 +277,43 @@ static void APP_delay_us(uint32_t nus)
 
 
 
-void HWLpTimer_Puase(void){
-  // 暂停定时器
-  __HAL_LPTIM_DISABLE(&LPTIMConf); 
-}  
-void HWLpTimer_Start(void){
-  // 启动定时器
-  /* 使能重载中断 */
-  __HAL_LPTIM_ENABLE_IT(&LPTIMConf, LPTIM_IT_ARRM);
-  /* 使能LPTIM */
-  __HAL_LPTIM_ENABLE(&LPTIMConf);
-  /* 开启单次计数模式 */
-  __HAL_LPTIM_START_SINGLE(&LPTIMConf);
-} 
-void HWLpTimer_SetWakeUpTime(uint32_t period){
-  // 设置定时器周期
-  /* 使能LPTIM */
-  __HAL_LPTIM_ENABLE(&LPTIMConf);
-  /* 加载重载值 */
-  g_arr = period;
-  __HAL_LPTIM_AUTORELOAD_SET(&LPTIMConf, (uint16_t)period);
-  /* 延时65us */
-  APP_delay_us(65);
-} 
-void HWLpTimer_SetCnt(uint32_t counter){
-  // 设置定时器计数值
-  LPTIMConf.Instance->CNT = counter; //直接设置计数寄存器
-} 
-uint32_t HWLpTimer_GetCnt(void){
-  //得到当前定时器的计数值
-  if(g_flag_overflow){ //如果发生过溢出
-    return g_arr; //返回重载值
-  }else {
-    return HAL_LPTIM_ReadCounter(&LPTIMConf); 
-  }
-  //如果计数值大于重载值，则返回重载值
-} 
-  
-void HWLpTimer_WakeUpHook(void* p_context){
-  APP_RCCOscConfig();
-  BSP_USART_Init(115200);
-  BSP_USART_Printf("LPTIM %d\r\n", HWLpTimer_GetCnt());
-}
+//void HWLpTimer_Puase(void){
+//  // 暂停定时器
+//  __HAL_LPTIM_DISABLE(&LPTIMConf); 
+//}  
+//void HWLpTimer_Start(void){
+//  // 启动定时器
+//  /* 使能重载中断 */
+//  __HAL_LPTIM_ENABLE_IT(&LPTIMConf, LPTIM_IT_ARRM);
+//  /* 使能LPTIM */
+//  __HAL_LPTIM_ENABLE(&LPTIMConf);
+//  /* 开启单次计数模式 */
+//  __HAL_LPTIM_START_SINGLE(&LPTIMConf);
+//} 
+//void HWLpTimer_SetWakeUpTime(uint32_t period){
+//  // 设置定时器周期
+//  /* 使能LPTIM */
+//  __HAL_LPTIM_ENABLE(&LPTIMConf);
+//  /* 加载重载值 */
+//  __HAL_LPTIM_AUTORELOAD_SET(&LPTIMConf, (uint16_t)period);
+//  /* 延时65us */
+//  APP_delay_us(65);
+//} 
+//void HWLpTimer_SetCnt(uint32_t counter){
+//  // 设置定时器计数值
+//  LPTIMConf.Instance->CNT = counter; //直接设置计数寄存器
+//} 
+//uint32_t HWLpTimer_GetCnt(void){
+//  //得到当前定时器的计数值
+//    return HAL_LPTIM_ReadCounter(&LPTIMConf); 
+//  //如果计数值大于重载值，则返回重载值
+//} 
+//  
+//void HWLpTimer_WakeUpHook(void* p_context){
+//  APP_RCCOscConfig();
+//  BSP_USART_Init(115200);
+//  BSP_USART_Printf("LPTIM %d\r\n", HWLpTimer_GetCnt());
+//}
 
 
 

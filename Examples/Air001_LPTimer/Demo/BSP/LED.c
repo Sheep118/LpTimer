@@ -6,8 +6,8 @@ GPIO_TypeDef *LED_PORT[MAX_LED_NUM] = {GPIOB, GPIOB, GPIOB};
 const uint16_t LED_PIN[MAX_LED_NUM] = {GPIO_PIN_1, GPIO_PIN_0, GPIO_PIN_3};
 uint8_t LED_STATE[MAX_LED_NUM] = {0, 0, 0}; //是否使能LED
 #else
-GPIO_TypeDef *LED_PORT[MAX_LED_NUM] = {GPIOB};
-const uint16_t LED_PIN[MAX_LED_NUM] = {GPIO_PIN_0};
+GPIO_TypeDef *LED_PORT[MAX_LED_NUM] = {GPIOB, GPIOA, GPIOA};
+const uint16_t LED_PIN[MAX_LED_NUM] = {GPIO_PIN_3, GPIO_PIN_4, GPIO_PIN_5};
 uint8_t LED_STATE[MAX_LED_NUM] = {0}; //是否使能LED
 #endif
 /**
@@ -23,6 +23,7 @@ void BSP_LED_Init(Led_TypeDef Led)
 
   /* Enable the GPIO_LED Clock */
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /* Configure the GPIO_LED pin */
   GPIO_InitStruct.Pin = LED_PIN[Led];
@@ -60,6 +61,7 @@ void BSP_LED_DeInit(Led_TypeDef Led)
   }
   //如果所有LED都禁用，则关闭GPIO时钟
   __HAL_RCC_GPIOB_CLK_DISABLE();
+  __HAL_RCC_GPIOA_CLK_DISABLE();
   /* 关闭GPIO时钟 */
 }
 
