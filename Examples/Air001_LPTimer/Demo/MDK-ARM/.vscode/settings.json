@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "air001_core_board.h": "c",
+        "main.h": "c",
+        "led.h": "c",
+        "uart1.h": "c",
+        "air001xx_hal.h": "c",
+        "air001xx_hal_conf.h": "c",
+        "koalatimer.h": "c",
+        "lptimer.h": "c"
+    }
+}
