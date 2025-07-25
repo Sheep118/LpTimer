@@ -41,6 +41,7 @@ static void APP_LPTIMStart(uint16_t arr);
 //uint32_t HWLpTimer_GetCnt(void);
 //void HWLpTimer_WakeUpHook(void *p_context);
 
+
 void test1_timer_hook(void){
     BSP_LED_Toggle(LED1);
     BSP_USART_Printf("test1\r\n");
