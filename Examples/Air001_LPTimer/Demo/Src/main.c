@@ -46,7 +46,7 @@ void test1_timer_hook(void){
     BSP_USART_Printf("test1\r\n");
   }
 void test2_timer_hook(void){
-  BSP_LED_Off(LED2);
+  BSP_LED_On(LED2);
   BSP_USART_Printf("test2\r\n");
 }
 void test3_timer_hook(void){
@@ -58,7 +58,7 @@ void test3_timer_hook(void){
       i = 0;
       if(LPTIMER_IS_STOPED(&test2_timer)){
         LpTimer_Start(&test2_timer,MS2TICK(3000));
-        BSP_LED_On(LED2);
+        BSP_LED_Off(LED2);
       }
     }
 }
@@ -91,36 +91,33 @@ int main(void)
   __HAL_RCC_PWR_CLK_ENABLE();
   BSP_USART_Init(115200);
   BSP_USART_Printf("uart_test!\r\n");
-  BSP_USART_Deinit();
+  // BSP_USART_Deinit();
 
   /* 关闭LED */
   BSP_LED_Off(LED1);
   BSP_LED_Off(LED2);
   BSP_LED_Off(LED3);
   
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_RESET);
   LpTimer_Create(&test1_timer, E_LPTIMERMODE_PERIODIC, test1_timer_hook);
   LpTimer_Create(&test2_timer, E_LPTIMERMODE_ONCE, test2_timer_hook);
   LpTimer_Create(&test3_timer, E_LPTIMERMODE_PERIODIC, test3_timer_hook);
   LpTimer_Start(&test1_timer,MS2TICK(1000));
   LpTimer_Start(&test2_timer,MS2TICK(5000));
-  LpTimer_Start(&test3_timer,MS2TICK(3200));
+  LpTimer_Start(&test3_timer,(MS2TICK(3200)));
   // __HAL_LPTIM_DISABLE(&LPTIMConf);
   // APP_LPTIMStart(256*2);
   // HAL_SuspendTick(); //关闭systick
   // HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);//低功耗模式
-  
+  into_low_power = 1;
   
   while (1)
   {
-    if(into_low_power){
-      // HAL_SuspendTick(); //关闭systick
-      BSP_USART_Deinit();
-      HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);//低功耗模式
-      into_low_power = 0;
-    }
+   if(into_low_power){
+     // HAL_SuspendTick(); //关闭systick
+     BSP_USART_Deinit();
+     HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);//低功耗模式
+     into_low_power = 0;
+   }
     // /* 失能 LPTIM */
     // __HAL_LPTIM_DISABLE(&LPTIMConf);
    
@@ -131,10 +128,10 @@ int main(void)
     // HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
     // BSP_LED_Toggle(LEDRED);
     // BSP_LED_Toggle(LEDGREEN);
-    // BSP_LED_Toggle(LEDBLUE);
+    // BSP_LED_Toggle(LED1);
     // BSP_USART_Printf("sheep! hello world!");
     /* 延时500ms */
-    // APP_delay_us(500000);
+    // sAPP_delay_us(500000);
   }
 }
 
@@ -193,7 +190,8 @@ static void APP_LPTIMInit(void)
 {
   /*LPTIM配置*/
   LPTIMConf.Instance = LPTIM;                         /* LPTIM */
-  LPTIMConf.Init.Prescaler = LPTIM_PRESCALER_DIV128;  /* 128分频 */ // 32.768KHz / 128 = 256Hz
+  LPTIMConf.Init.Prescaler = LPTIM_PRESCALER_DIV1;  /* 1分频 */ // 32.768KHz
+  // LPTIMConf.Init.Prescaler = LPTIM_PRESCALER_DIV128;  /* 128分频 */ // 32.768KHz / 128 = 256Hz
   /* LPTIM时钟频率为256Hz，计数周期为1/256Hz = 3.90625ms */
   LPTIMConf.Init.UpdateMode = LPTIM_UPDATE_IMMEDIATE; /* 立即更新模式 */
   /*初始化LPTIM*/
@@ -235,8 +233,8 @@ static void APP_LPTIMStart(uint16_t arr)
 // {
 //   APP_RCCOscConfig();
 //   BSP_USART_Init(115200);
-//   BSP_USART_Printf("LPTIM AutoReload Match Callback!\r\n");
-//   BSP_USART_Deinit();
+//   BSP_USART_Printf("%d\r\n", HAL_LPTIM_ReadCounter(&LPTIMConf));
+//   // BSP_USART_Deinit();
 //   BSP_LED_Toggle(LED1);
 //   BSP_LED_Toggle(LED2);
 //   BSP_LED_Toggle(LED3);
@@ -244,12 +242,13 @@ static void APP_LPTIMStart(uint16_t arr)
 //   //必须先失能定时器，才能写IER中断失能寄存器开启中断
 //   //换句话说，要重新开启中断，需要1.失能定时器，2.清除ISR标志位(这个在中断服务函数中做了)
 //   APP_LPTIMStart(256*2);
+//   BSP_USART_Printf("%d\r\n", HAL_LPTIM_ReadCounter(&LPTIMConf));
 //   into_low_power = 1;
 // }
 void HAL_LPTIM_AutoReloadMatchCallback(LPTIM_HandleTypeDef *hlptim)
 {
     LpTimer_Execute();
-    BSP_USART_Printf("%d\r\n", HAL_LPTIM_ReadCounter(&LPTIMConf));
+    // BSP_USART_Printf("%d\r\n", HAL_LPTIM_ReadCounter(&LPTIMConf));
     into_low_power = 1;
 }
 /**

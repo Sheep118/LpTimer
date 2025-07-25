@@ -1,9 +1,9 @@
+#include "main.h"
 #define LPTIMER_IMPLEMENT
 #include "LPTimer.h"
 
-#include "main.h"
 
-static uint32_t temp = 0;
+static volatile uint32_t temp = 0;
 
 // 暂停定时器
 static void HwLpTimer_Puase(void){ 
@@ -42,17 +42,22 @@ static void HwLpTimer_SetCnt(uint32_t counter){
 
 //得到当前定时器的计数值
 static uint32_t HwLpTimer_GetCnt(void){ 
-    uint32_t last_cnt = HAL_LPTIM_ReadCounter(&LPTIMConf);
+	  // BSP_USART_Printf("into get counter\r\n");
+    // uint32_t last_cnt = HAL_LPTIM_ReadCounter(&LPTIMConf);
+		// BSP_USART_Printf("last = %d\r\n", last_cnt);
+    // uint32_t cur_cnt = HAL_LPTIM_ReadCounter(&LPTIMConf);
+		// BSP_USART_Printf("cur = %d\r\n", last_cnt);
+		// if(last_cnt == cur_cnt)
+    //     return cur_cnt;
+    // else cur_cnt = HAL_LPTIM_ReadCounter(&LPTIMConf);
+    // return cur_cnt;
     uint32_t cur_cnt = HAL_LPTIM_ReadCounter(&LPTIMConf);
-    if(last_cnt == cur_cnt)
-        return cur_cnt;
-    else cur_cnt = HAL_LPTIM_ReadCounter(&LPTIMConf);
     return cur_cnt;
 }
 
 //唤醒任何一个LpTImer后会执行的hook函数 (可以用于低功耗模式下配置唤醒后的时钟)
 static void HwLpTimer_WakeUpHook(void* p_context){ 
-    APP_RCCOscConfig();
-    BSP_USART_Init(115200);
+   APP_RCCOscConfig();
+   BSP_USART_Init(115200);
 }
 
