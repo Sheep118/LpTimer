@@ -1,0 +1,342 @@
+Build target 'Project'
+assembling startup_air001_dev.s...
+compiling system_air001xx.c...
+compiling main.c...
+..\BSP\LED.h(27): warning:  #1-D: last line of file ends without a newline
+  #endif /* __HAL_LED_H */
+..\BSP\UART1.h(46): warning:  #1-D: last line of file ends without a newline
+  #endif /* __UART1_H */
+..\BSP\LPTIM.h(21): warning:  #1-D: last line of file ends without a newline
+  #endif /* __LPTIM_H */
+..\Src\main.c: 3 warnings, 0 errors
+compiling air001xx_hal_msp.c...
+..\BSP\LED.h(27): warning:  #1-D: last line of file ends without a newline
+  #endif /* __HAL_LED_H */
+..\BSP\UART1.h(46): warning:  #1-D: last line of file ends without a newline
+  #endif /* __UART1_H */
+..\BSP\LPTIM.h(21): warning:  #1-D: last line of file ends without a newline
+  #endif /* __LPTIM_H */
+..\Src\air001xx_hal_msp.c: 3 warnings, 0 errors
+compiling air001xx_it.c...
+..\BSP\LED.h(27): warning:  #1-D: last line of file ends without a newline
+  #endif /* __HAL_LED_H */
+..\BSP\UART1.h(46): warning:  #1-D: last line of file ends without a newline
+  #endif /* __UART1_H */
+..\BSP\LPTIM.h(21): warning:  #1-D: last line of file ends without a newline
+  #endif /* __LPTIM_H */
+..\Src\air001xx_it.c: 3 warnings, 0 errors
+compiling air001xx_hal.c...
+compiling air001xx_hal_dma.c...
+compiling air001xx_hal_flash.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling air001xx_hal_gpio.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling air001xx_hal_lptim.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling air001xx_hal_pwr.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling air001xx_hal_rcc.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling air001xx_hal_rcc_ex.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling air001xx_hal_uart.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling air001xx_hal_cortex.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling LED.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling UART1.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+compiling LPTIM.c...
+Fatal error: C3900U: Unrecognized option '-xc'.
+Warning: C3910W: Old syntax, please use '-S'.
+Fatal error: C3900U: Unrecognized option '-td=c99'.
+Fatal error: C3900U: Unrecognized option '--target=arm-arm-none-eabi'.
+Warning: C3910W: Old syntax, please use '-M'.
+Warning: C3910W: Old syntax, please use '--cpu'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -cpu cortex-m0plus
+Fatal error: C3900U: Unrecognized option '-fno-rtti'.
+Fatal error: C3900U: Unrecognized option '-funsigned-char'.
+Fatal error: C3900U: Unrecognized option '-fshort-enums'.
+Fatal error: C3900U: Unrecognized option '-fshort-wchar'.
+Warning: C3910W: Old syntax, please use '-D'.
+Fatal error: C3917U: Concatenated options cannot have arguments: -D warf-4
+Fatal error: C3900U: Unrecognized option '-ffunction-sections'.
+Fatal error: C3900U: Unrecognized option '-no-packed'.
+Fatal error: C3900U: Unrecognized option '-no-missing-variable-declarations'.
+Fatal error: C3900U: Unrecognized option '-no-missing-prototypes'.
+Fatal error: C3900U: Unrecognized option '-no-missing-noreturn'.
+Fatal error: C3900U: Unrecognized option '-no-sign-conversion'.
+Fatal error: C3900U: Unrecognized option '-no-nonportable-include-path'.
+Fatal error: C3900U: Unrecognized option '-no-reserved-id-macro'.
+Fatal error: C3900U: Unrecognized option '-no-unused-macros'.
+Fatal error: C3900U: Unrecognized option '-no-documentation-unknown-command'.
+Fatal error: C3900U: Unrecognized option '-no-documentation'.
+Fatal error: C3900U: Unrecognized option '-no-license-management'.
+Fatal error: C3900U: Unrecognized option '-no-parentheses-equality'.
+Warning: C3910W: Old syntax, please use '--md'.
+linking...
+.\Output\Debug\Project.axf: error: L6002U: Could not open file .\output\debug\air001xx_hal_gpio.o: No such file or directory
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+".\Output\Debug\Project.axf" - 1 Error(s), 9 Warning(s).
+Target not created.
