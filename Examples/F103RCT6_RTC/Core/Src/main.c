@@ -70,20 +70,20 @@ void test3_timer_hook(void){
       }
     }
 }
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-    HAL_Init();
-    SystemClock_Config(); //恢复HSE时钟源
-    HAL_UART_MspInit(&huart1); // 重新初始化USART1
-    if(GPIO_Pin == KEY_Pin) // 检查是否为KEY
-    {
-        // printf("into %d \r\n",(uint8_t)HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin));
-        if(HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_RESET){
-          // printf("Button pressed!\r\n");
-          LpTimer_Stop(&test1_timer);
-        }
-    }
-}
+// void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+// {
+//     HAL_Init();
+//     SystemClock_Config(); //恢复HSE时钟源
+//     HAL_UART_MspInit(&huart1); // 重新初始化USART1
+//     if(GPIO_Pin == KEY_Pin) // 检查是否为KEY
+//     {
+//         // printf("into %d \r\n",(uint8_t)HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin));
+//         if(HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_RESET){
+//           // printf("Button pressed!\r\n");
+//           LpTimer_Stop(&test1_timer);
+//         }
+//     }
+// }
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/

@@ -30,7 +30,7 @@ typedef struct _LpTimer
 // <i> Default: 0xFFFFFFFFUL, Hardware timer overflow value
 #define HWLPTIMER_MAX_TIMEOUT 0xFFFFFFFFUL
 
-// <o> Define timer frequency (Hz) <1000-100000:1000>
+// <o> Define timer frequency (Hz) <1000-100000:1>
 // <i> Default: 40000 (40kHz), Hardware timer Frequency
 #define HWLPTIMER_FREQ        40000
 
@@ -276,16 +276,23 @@ void LpTimer_Execute(void)
 #endif //(HWLPTIMER_MODE == HWLPTIMER_MODE_RTC_TIMER)
     LpTimer *p = timerList;
     while(p != NULL && p->deadline <= (currentTime + TICK_OF_SAFETY_WINDOW)) {
-        p->taskFunction(); // 执行任务函数
-        if(p->mode == E_LPTIMERMODE_ONCE) {
-            LpTimer_DelFormList(p); // 如果是单次模式，从链表中摘除p
-            p = timerList; // 重新获取链表头
-        } else {
-            LpTimer_DelFormList(p); //从链表中摘除p
+        // p->taskFunction(); // 执行任务函数
+        // if(p->mode == E_LPTIMERMODE_ONCE) {
+        //     LpTimer_DelFormList(p); // 如果是单次模式，从链表中摘除p
+        //     p = timerList; // 重新获取链表头
+        // } else {
+        //     LpTimer_DelFormList(p); //从链表中摘除p
+        //     p->deadline = currentTime + (uint64_t)(p->period); // 如果是周期模式，重新设置超时时间
+        //     LpTimer_Insert2List(p); // 重新插入到链表中
+        //     p = timerList; // 重新获取链表头
+        // }
+        LpTimer_DelFormList(p); //从链表中摘除p
+        if(p->mode == E_LPTIMERMODE_PERIODIC) {
             p->deadline = currentTime + (uint64_t)(p->period); // 如果是周期模式，重新设置超时时间
             LpTimer_Insert2List(p); // 重新插入到链表中
-            p = timerList; // 重新获取链表头
         }
+        p->taskFunction(); // 执行任务函数(先摘除再执行，防止任务中重新开始定时器出现target设置成0的情况)
+        p = timerList; // 重新获取链表头
     }
     if(timerList != NULL) {
         if(hw_current_cnt == HWLPTIMER_MAX_TIMEOUT) hw_current_cnt = 0;
