@@ -7,6 +7,7 @@
         "air001xx_hal.h": "c",
         "air001xx_hal_conf.h": "c",
         "koalatimer.h": "c",
-        "lptimer.h": "c"
+        "lptimer.h": "c",
+        "air001xx_hal_rcc.h": "c"
     }
 }

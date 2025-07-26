@@ -148,21 +148,20 @@ void APP_RCCOscConfig(void)
   // RCC_ClkInitTypeDef ClkInit; 
 
   /* LSI时钟配置 */
-  OSCINIT.OscillatorType = RCC_OSCILLATORTYPE_LSI;  /* 选择配置LSI */
+  OSCINIT.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSI;  /* 选择配置LSI */
   OSCINIT.LSIState = RCC_LSI_ON;                    /* LSI开启 */
   OSCINIT.HSIState = RCC_HSI_ON;                    /* HSI开启 */
-  OSCINIT.HSIDiv = RCC_HSI_DIV1;                   /* HSI分频1 ,24MHz,唤醒后是8MHz */
-  // OSCINIT.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT; /* HSI校准值默认 */
-  // HSI的开启似乎没有什么用
+  OSCINIT.HSIDiv = RCC_HSI_DIV1;                   /* HSI分频1，唤醒后是8MHz */
   /* 时钟初始化 */
   if (HAL_RCC_OscConfig(&OSCINIT) != HAL_OK)
   {
     Error_Handler();
   }
 
+
+  // ClkInit.ClockType = RCC_CLOCKTYPE_SYSCLK;
   // ClkInit.AHBCLKDivider = RCC_SYSCLK_DIV1;
   // ClkInit.APB1CLKDivider = RCC_HCLK_DIV1;
-  // ClkInit.ClockType = RCC_CLOCKTYPE_SYSCLK;
   // ClkInit.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   
   // if(HAL_RCC_ClockConfig(&ClkInit, FLASH_LATENCY_0) != HAL_OK){
@@ -239,7 +238,7 @@ static void APP_LPTIMStart(uint16_t arr)
 //   BSP_LED_Toggle(LED1);
 //   BSP_LED_Toggle(LED2);
 //   BSP_LED_Toggle(LED3);
-//   __HAL_LPTIM_DISABLE(&LPTIMConf); 
+  // __HAL_LPTIM_DISABLE(&LPTIMConf); 
 //   //必须先失能定时器，才能写IER中断失能寄存器开启中断
 //   //换句话说，要重新开启中断，需要1.失能定时器，2.清除ISR标志位(这个在中断服务函数中做了)
 //   APP_LPTIMStart(256*2);
