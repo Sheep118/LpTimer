@@ -6,6 +6,8 @@
         "stm32f1xx_hal_conf.h": "c",
         "stm32f1xx_hal_rtc.h": "c",
         "lptimer.h": "c",
-        "usart.h": "c"
+        "usart.h": "c",
+        "gpio.h": "c",
+        "stm32f1xx_hal_gpio.h": "c"
     }
 }
