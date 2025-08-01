@@ -34,7 +34,7 @@ static void HwLpTimer_SetWakeUpTime(uint32_t period){
     RTC_WriteAlarmCounter(&hrtc, period);
 }
 
-// 设置定时器周期
+// 设置定时器当前计数器的值
 static void HwLpTimer_SetCnt(uint32_t counter){ 
     RTC_WriteTimeCounter(&hrtc, counter);
 }

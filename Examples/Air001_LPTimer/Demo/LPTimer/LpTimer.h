@@ -30,7 +30,7 @@ typedef struct _LpTimer
 // <i> Default: 0xFFFFFFFFUL, Hardware timer overflow value
 #define HWLPTIMER_MAX_TIMEOUT 0x0000FFFFUL
 
-// <o> Define timer frequency (Hz) <1000-100000:1>
+// <o> Define timer frequency (Hz) <100-100000:1>
 // <i> Default: 40000 (40kHz), Hardware timer Frequency
 #define HWLPTIMER_FREQ        32768
 
