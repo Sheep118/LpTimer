@@ -143,8 +143,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
     HAL_UART_MspDeInit(&huart1); // 关闭USART1，节省功耗
     HAL_SuspendTick();
-    // HAL_DeInit();
-    HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI); //8mA左右(关闭usart后大概4mA)
+    HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
   }
   /* USER CODE END 3 */
 }

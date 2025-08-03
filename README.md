@@ -1,3 +1,5 @@
+![LPTimer框架](./pic/LPTimer框架more.png)
+
 # LpTimer，一个可以在定时间隔休眠的软件定时器
 
 ## LpTimer的灵感来源
